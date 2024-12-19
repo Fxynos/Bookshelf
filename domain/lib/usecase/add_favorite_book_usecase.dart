@@ -1,14 +1,14 @@
 import 'package:domain/boundary/book_repository.dart';
-import 'package:domain/boundary/session_repository.dart';
+import 'package:domain/boundary/session_cubit.dart';
 import 'package:domain/usecase/usecase_contracts.dart';
 
 class AddFavoriteBookUseCase extends AsyncUseCase<String, void> {
 
-  final SessionRepository _sessionRepository;
+  final SessionCubit _sessionRepository;
   final BookRepository _bookRepository;
 
   AddFavoriteBookUseCase({
-    required SessionRepository sessionRepository,
+    required SessionCubit sessionRepository,
     required BookRepository bookRepository
   }) : _sessionRepository = sessionRepository, _bookRepository = bookRepository;
 
