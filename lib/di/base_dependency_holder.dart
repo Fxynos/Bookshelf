@@ -6,8 +6,9 @@ abstract class BaseDependencyHolder {
   List<Widget Function(Widget)> create();
 
   Widget inject({required Widget child}) =>
-      create().reduce((provider1, provider2) =>
-        (widget) =>
-          provider2(provider1(widget))
-        )(child);
+      create().cast<Widget Function(Widget)>()
+          .reduce((provider1, provider2) =>
+            (widget) =>
+              provider2(provider1(widget))
+          )(child);
 }

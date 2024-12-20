@@ -1,16 +1,17 @@
 import 'package:bookshelf/di/base_dependency_holder.dart';
 import 'package:bookshelf/navigation/arguments.dart';
 import 'package:flutter/material.dart';
+import 'package:ui/screen/auth_screen.dart';
 
 sealed class Destination<A extends Arguments, S extends Widget> {
 
   final String route;
-  final S Function(A) _builder;
+  final S Function(A?) _builder;
   final BaseDependencyHolder _dependencyHolder;
 
   Destination({
     required this.route,
-    required S Function(A) builder,
+    required S Function(A?) builder,
     required BaseDependencyHolder dependencyHolder
   }) : _builder = builder, _dependencyHolder = dependencyHolder;
 
@@ -18,7 +19,7 @@ sealed class Destination<A extends Arguments, S extends Widget> {
       child: _builder(
           ModalRoute.of(context)!
               .settings
-              .arguments as A
+              .arguments as A?
       )
   );
 
@@ -34,10 +35,10 @@ sealed class Destination<A extends Arguments, S extends Widget> {
 
 /* Destinations */
 
-class AuthDestination extends Destination<EmptyArguments, Text> {
+class AuthDestination extends Destination<EmptyArguments, AuthScreen> {
   AuthDestination({required super.dependencyHolder}): super(
     route: '/auth',
-    builder: (args) => const Text("Not implemented")
+    builder: (args) => AuthScreen()
   );
 }
 
