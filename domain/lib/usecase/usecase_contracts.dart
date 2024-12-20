@@ -5,3 +5,7 @@ abstract class BlockingUseCase<T, R> {
 abstract class AsyncUseCase<T, R> {
   Future<R> invoke(T param);
 }
+
+abstract class StreamUseCase<T, R> {
+  Stream<R> invoke(T param);
+}

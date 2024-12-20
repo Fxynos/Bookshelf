@@ -6,7 +6,7 @@ class GoogleSessionCubit extends SessionCubit {
 
   final GoogleSignIn _google = GoogleSignIn(scopes: ['email']);
 
-  GoogleSessionCubit(super.initialState) {
+  GoogleSessionCubit() : super(null) {
     _google
         ..onCurrentUserChanged
             .asyncMap(_toSession)
